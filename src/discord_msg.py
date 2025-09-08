@@ -5,6 +5,7 @@ from src.util import fix_username, typing_loop
 
 
 async def handle_message(message, client):
+    print(message)
     # Ignore messages from bots (including ourselves)
     if message.author.bot:
         return

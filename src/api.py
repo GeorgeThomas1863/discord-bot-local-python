@@ -7,6 +7,7 @@ async def send_to_llm(input_array):
     # Prepare the request payload (OpenAI-compatible format)
     payload = {
         "messages": input_array,
+        "model": "deepseek/deepseek-r1-0528-qwen3-8b",
         "temperature": 0.7,  # Adjust for more/less creative responses
         "max_tokens": 1000,  # Maximum response length
         "stream": False,  # Get complete response at once
