@@ -1,7 +1,7 @@
 import asyncio
 from config.config import CHANNELS, PREFIX, CHUNK_SIZE_LIMIT
-from api import send_to_llm, define_system_prompt
-from util import fix_username, typing_loop
+from src.api import send_to_llm, define_system_prompt
+from src.util import fix_username, typing_loop
 
 
 async def handle_message(message, client):
