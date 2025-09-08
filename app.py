@@ -3,12 +3,11 @@ Main entry point for the Discord bot.
 Equivalent to app.js in the JavaScript version.
 """
 
-from discord import Client, Intents
-from discord.ext import commands
-import asyncio
+from discord import Client, Intents, LoginFailure
 from config.bot import DISCORD_TOKEN
 from config.config import PREFIX
-from discord_msg import handle_message
+from src.discord import handle_message
+import traceback
 
 
 # Create the bot client
@@ -24,16 +23,10 @@ client = Client(
 
 @client.event
 async def on_ready():
-    """
-    Event handler for when the bot successfully connects to Discord.
-    This runs once when the bot starts up.
-    """
+
     print(f"{client.user} has connected to Discord!")
     print(f"Bot is ready to receive messages.")
     print(f"Prefix: {PREFIX}")
-
-    # Optional: Set bot status
-    await client.change_presence(activity=discord.Game(name=f"Chatting with {PREFIX}"))
 
 
 @client.event
@@ -56,7 +49,6 @@ async def on_error(event, *args, **kwargs):
     Logs any errors that occur during event processing.
     """
     print(f"Error in {event}:")
-    import traceback
 
     traceback.print_exc()
 
@@ -66,8 +58,7 @@ def main():
     Main function to start the bot.
     """
     if not DISCORD_TOKEN:
-        print("ERROR: DISCORD_TOKEN not found in environment variables!")
-        print("Please add your bot token to the .env file")
+        print("ERROR: DISCORD_TOKEN NOT FOUND")
         return
 
     print("Starting Discord bot...")
@@ -75,7 +66,7 @@ def main():
     try:
         # Start the bot (this blocks until the bot shuts down)
         client.run(DISCORD_TOKEN)
-    except discord.LoginFailure:
+    except LoginFailure:
         print("ERROR: Invalid Discord token!")
     except Exception as e:
         print(f"ERROR: Failed to start bot: {e}")
