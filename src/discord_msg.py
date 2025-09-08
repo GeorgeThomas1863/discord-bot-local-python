@@ -1,8 +1,3 @@
-"""
-Discord message handling module.
-Processes incoming messages and generates responses.
-"""
-
 import asyncio
 from config.config import CHANNELS, PREFIX, CHUNK_SIZE_LIMIT
 from api import send_to_llm, define_system_prompt
@@ -10,16 +5,6 @@ from util import fix_username, typing_loop
 
 
 async def handle_message(message, client):
-    """
-    Process incoming Discord messages and generate responses.
-
-    Args:
-        message: Discord message object
-        client: Discord client instance
-    """
-
-    # Early returns for filtering messages we don't want to process
-
     # Ignore messages from bots (including ourselves)
     if message.author.bot:
         return

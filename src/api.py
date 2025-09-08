@@ -1,8 +1,3 @@
-"""
-API module for communicating with the local LLM.
-Replaces the OpenAI API calls with local LLM requests.
-"""
-
 import aiohttp
 from config.config import LLM_ENDPOINT, SYSTEM_PROMPT
 

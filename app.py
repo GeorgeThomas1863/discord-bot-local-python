@@ -1,12 +1,7 @@
-"""
-Main entry point for the Discord bot.
-Equivalent to app.js in the JavaScript version.
-"""
-
 from discord import Client, Intents, LoginFailure
 from config.bot import DISCORD_TOKEN
 from config.config import PREFIX
-from src.discord import handle_message
+from src.discord_msg import handle_message
 import traceback
 
 

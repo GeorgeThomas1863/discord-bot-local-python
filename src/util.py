@@ -1,8 +1,3 @@
-"""
-Utility functions for the Discord bot.
-Helper functions for username formatting and typing indicators.
-"""
-
 import asyncio
 import re
 
