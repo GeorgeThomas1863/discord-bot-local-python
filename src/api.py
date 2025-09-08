@@ -4,7 +4,7 @@ Replaces the OpenAI API calls with local LLM requests.
 """
 
 import aiohttp
-from ..config.config import LLM_ENDPOINT, SYSTEM_PROMPT
+from config.config import LLM_ENDPOINT, SYSTEM_PROMPT
 
 
 async def send_to_llm(input_array):

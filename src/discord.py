@@ -4,7 +4,7 @@ Processes incoming messages and generates responses.
 """
 
 import asyncio
-from ..config.config import CHANNELS, PREFIX, CHUNK_SIZE_LIMIT
+from config.config import CHANNELS, PREFIX, CHUNK_SIZE_LIMIT
 from api import send_to_llm, define_system_prompt
 from util import fix_username, typing_loop
 
