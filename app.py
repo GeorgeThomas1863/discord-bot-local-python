@@ -3,22 +3,23 @@ Main entry point for the Discord bot.
 Equivalent to app.js in the JavaScript version.
 """
 
-import discord
+from discord import Client, Intents
 from discord.ext import commands
 import asyncio
-from config import DISCORD_TOKEN, PREFIX
+from config.bot import DISCORD_TOKEN
+from config.config import PREFIX
 from discord_msg import handle_message
 
 
-# Set up Discord intents (permissions)
-# These tell Discord what events we want to receive
-intents = discord.Intents.default()
-intents.message_content = True  # Allows reading message content
-intents.guilds = True  # Allows accessing guild (server) info
-intents.members = True  # Allows accessing member info
-
 # Create the bot client
-client = discord.Client(intents=intents)
+client = Client(
+    intents=Intents(
+        guilds=True,  # Allows accessing guild (server) info
+        members=True,  # Allows accessing member info
+        messages=True,
+        message_content=True,  # Allows reading message content
+    )
+)
 
 
 @client.event
