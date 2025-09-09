@@ -4,7 +4,7 @@ from config.config import LLM_ENDPOINT, SYSTEM_PROMPT
 
 async def send_to_llm(input_array):
 
-    print(input_array)
+    # print(input_array)
 
     # Prepare the request payload (OpenAI-compatible format)
     payload = {
@@ -27,6 +27,8 @@ async def send_to_llm(input_array):
                 if response.status == 200:
                     # Parse JSON response
                     data = await response.json()
+
+                    print(data)
 
                     # Extract the message content (OpenAI format)
                     # The response structure should be similar to OpenAI's
