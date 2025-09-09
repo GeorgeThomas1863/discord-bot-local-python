@@ -4,6 +4,8 @@ from config.config import LLM_ENDPOINT, SYSTEM_PROMPT
 
 async def send_to_llm(input_array):
 
+    print(input_array)
+
     # Prepare the request payload (OpenAI-compatible format)
     payload = {
         "messages": input_array,

@@ -5,18 +5,22 @@ from src.util import fix_username, typing_loop
 
 
 async def handle_message(message, client):
-    print(message)
+    print(message.content)
     # Ignore messages from bots (including ourselves)
     if message.author.bot:
         return
 
+    # print(message.channel.id)
+
     # Check if message is in an allowed channel
-    if message.channel.id not in CHANNELS:
+    if str(message.channel.id) not in CHANNELS:
         return
 
     # Check if message starts with prefix or mentions the bot
     first_char = message.content.strip()[:1] if message.content.strip() else ""
     bot_mentioned = client.user in message.mentions
+    # print(first_char)
+    # print(bot_mentioned)
 
     # If neither condition is met, ignore the message
     if first_char != PREFIX and not bot_mentioned:
@@ -30,6 +34,7 @@ async def handle_message(message, client):
     try:
         # Build conversation array from channel history
         convo_array = await build_convo_array(message.channel, client)
+        print(convo_array)
 
         print(f"Sending {len(convo_array)} messages to LLM...")
 
